@@ -1,65 +1,40 @@
-#include "PessoaJuridica.h"
+#include <string>
+#include "Pessoa.h"
 #include "PessoaFisica.h"
+#include "PessoaJuridica.h"
 
-class Cliente : public PessoaFisica, public PessoaJuridica{
+using namespace std;
+
+class Cliente{
   private: //Declaração de variaveis
+	enum tipo_pessoa { FISICA, JURIDICA };
+	int tipo;
 	int codigo;
 
   public:
+	Pessoa *pessoa;
 
-	Cliente(string nome, string endereco){
-		this.nome = nome;
-		this.endereco = endereco;
+	Cliente(){}
+
+	//Cria cliente
+	void cadastro_cliente_juridico(int codigo, PessoaJuridica &pessoa_juridica){
+		this->codigo = codigo;
+		this->tipo = this->tipo_pessoa::FISICA;
+		this->pessoa = &pessoa_juridica;
 	}
 
-	void set_cliente() //Cria um cliente
-	{
-		string nome_p, end_p;
-		int cnpj_p, x = 0, y;
-		system("cls");
-		cout << "Digite o codigo: ";
-		cin >> cod;
-		cout << "Digite o nome: ";
-		cin >> nome_p;
-		cout << "Digite o endereco: ";
-		cin >> end_p;
-		while (x == 0)
-		{
-			cout << "Informe o tipo de pessoa (1.juridica/2.fisica): ";
-			cin >> y; //Informa o tipo de cliente que deseja criar
-			switch (y)
-			{
-			case 1:
-				j = new pessoa_juridica; //Ponteiro para pessoa juridica é criado
-				cout << "Digite o cnpj: ";
-				cin >> cnpj_p;
-				j->set_nome(nome_p);
-				j->set_end(end_p);
-				j->set_cnpj(cnpj_p);
-				x = 1;
-				break;
-			case 2:
-				f = new pessoa_fisica; //Ponteiro para pessoa fisica é criado
-				f->set_nome(nome_p);
-				f->set_end(end_p);
-				x = 1;
-				break;
-			default:
-				cout << "Codigo errado!!\nDigite novamente";
-			}
-		}
-		cout << "Cadastro feito com sucesso!";
-	};
-	void get_cliente(int x) //Retorna os dados do cliente
-	{
-		system("cls");
-		if (x == 1)
-			cout << "Pessoa " << f->get_tipo_f() << "\nNome: " << f->get_nome_f() << "\nEndereco: " << f->get_end_f() << "\nCodigo: " << get_cod() << "\nDesconto: " << f->get_desc();
-		if (x == 2)
-			cout << "Pessoa " << j->get_tipo_j() << "\nNome: " << j->get_nome_j() << "\nEndereco: " << j->get_end_j() << "\nCodigo: " << get_cod() << "\nCNPJ: " << j->get_cnpj();
-		cout << "\n";
-		system("pause");
-	};
+	void cadastro_cliente_fisico(int codigo, PessoaFisica &pessoa_fisica){
+		this->codigo = codigo;
+		this->tipo = this->tipo_pessoa::JURIDICA;
+		this->pessoa = &pessoa_fisica;
+	}
+
+	//Retorna os dados do cliente
+	// Pessoa get_cliente(){
+	// 	return this->pessoa;
+	// };
+
+/*
 	float desconto(float ct) //Calcula o desconto
 	{
 		float conta;
@@ -70,6 +45,7 @@ class Cliente : public PessoaFisica, public PessoaJuridica{
 		}
 		return conta;
 	};
+
 	void altera_cliente() //Faz a alteração dos dados do cliente
 	{
 		string nome_p, end_p;
@@ -172,5 +148,7 @@ class Cliente : public PessoaFisica, public PessoaJuridica{
 			}
 		}
 	};
-	int get_cod() { return cod; }; //Retorna o codigo do cliente
+	*/
+
+	// int get_cod() { return cod; }; //Retorna o codigo do cliente
 };
