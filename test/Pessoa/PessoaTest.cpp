@@ -13,21 +13,21 @@
 #include "PessoaTest.h"
 
 void PessoaTest::setUp(){
-  pessoa = new Pessoa();
+  this->pessoa = new Pessoa();
 }
 
 void PessoaTest::tearDown(){
-  delete pessoa;
-};
+  delete this->pessoa;
+}
 
 void PessoaTest::testConstrutorSemParametro(){
-  pessoa = new Pessoa();
+  this->pessoa = new Pessoa();
   CPPUNIT_ASSERT(pessoa->nome == "");
   CPPUNIT_ASSERT(pessoa->endereco == "");
 }
 
 void PessoaTest::testConstrutorComParametro(){
-  pessoa = new Pessoa("Moises", "Av. Independencia");
+  this->pessoa = new Pessoa("Moises", "Av. Independencia");
   CPPUNIT_ASSERT(pessoa->nome == "Moises");
   CPPUNIT_ASSERT(pessoa->endereco == "Av. Independencia");
 }

@@ -2,15 +2,11 @@
 using namespace std;
 
 class PessoaFisica : public Pessoa{
-  public:
-    float desconto;
-
+  public:  
+  
     PessoaFisica() {}
-    PessoaFisica(string nome, string endereco){
-      this->nome = endereco;
-      this->endereco = endereco;
-      this->desconto = 0.25;
-    };
+    PessoaFisica(string nome, string endereco, double desconto = 0.25):Pessoa(nome, endereco, desconto){}
 
-    void add_desconto() { desconto += 0.25; };
+    void addDesconto() { this->desconto += 0.25; }
+    double getDesconto() { return this->desconto; }
 };

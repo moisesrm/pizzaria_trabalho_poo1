@@ -14,31 +14,37 @@
 #include "ClienteTest.h"
 
 void ClienteTest::setUp(){
-  cliente = new Cliente();
 }
 
 void ClienteTest::tearDown(){
-  delete cliente;
-};
+  delete this->cliente;
+}
 
 
 void ClienteTest::testClienteFisico(){
-  PessoaFisica *pessoa_fisica = new PessoaFisica("Moises", "Av. Independencia");
-  cliente = new Cliente();
-  cliente->cadastro_cliente_fisico(1,*pessoa_fisica);
+  long int cnpj = 0;
+  double desconto = 0.25;
 
-  CPPUNIT_ASSERT(cliente->pessoa->nome == "Moises");
-  CPPUNIT_ASSERT(cliente->pessoa->endereco == "Av. Independencia");
+  this->cliente = new Cliente(1,"Moises", "Av. Independencia");
+
+  CPPUNIT_ASSERT(this->cliente->pessoa->nome == "Moises");
+  CPPUNIT_ASSERT(this->cliente->pessoa->endereco == "Av. Independencia");
+  CPPUNIT_ASSERT_EQUAL(desconto, this->cliente->pessoa->getDesconto());
+  CPPUNIT_ASSERT_EQUAL(cnpj, this->cliente->pessoa->getCnpj());
+  CPPUNIT_ASSERT_EQUAL(this->cliente->tipo, TipoPessoa::FISICA);
 }
 
 void ClienteTest::testClienteJuridico(){
-  PessoaJuridica *pessoa_juridica = new PessoaJuridica("Moises", "Av. Independencia", 68223850000192);
-  cliente = new Cliente();
-  cliente->cadastro_cliente_juridico(1,*pessoa_juridica);
+  long int cnpj = 68223850000192;
+  double desconto = 0.0;
 
-  CPPUNIT_ASSERT(cliente->pessoa->nome == "Moises");
-  CPPUNIT_ASSERT(cliente->pessoa->endereco == "Av. Independencia");
-  // CPPUNIT_ASSERT(cliente->pessoa->cnpj == 68223850000192);
+  this->cliente = new Cliente(1,"Moises", "Av. Independencia", cnpj);
+
+  CPPUNIT_ASSERT(this->cliente->pessoa->nome == "Moises");
+  CPPUNIT_ASSERT(this->cliente->pessoa->endereco == "Av. Independencia");
+  CPPUNIT_ASSERT_EQUAL(desconto, this->cliente->pessoa->getDesconto());
+  CPPUNIT_ASSERT_EQUAL(cnpj, this->cliente->pessoa->getCnpj());
+  CPPUNIT_ASSERT_EQUAL(this->cliente->tipo, TipoPessoa::JURIDICA);
 }
 
 

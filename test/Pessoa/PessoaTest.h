@@ -12,10 +12,9 @@ class PessoaTest : public CppUnit::TestFixture
   CPPUNIT_TEST( testSetEndereco );
   CPPUNIT_TEST_SUITE_END();
 
-  private:
+  public:
     Pessoa *pessoa;
 
-  public:
     void setUp();
     void tearDown();
 

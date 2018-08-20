@@ -5,28 +5,33 @@
 
 using namespace std;
 
-class Cliente{
-  private: //Declaração de variaveis
-	enum tipo_pessoa { FISICA, JURIDICA };
-	int tipo;
-	int codigo;
+enum class TipoPessoa { FISICA, JURIDICA }; 
 
+class Cliente{
   public:
+	TipoPessoa tipo;
+	int codigo;
 	Pessoa *pessoa;
 
 	Cliente(){}
-
-	//Cria cliente
-	void cadastro_cliente_juridico(int codigo, PessoaJuridica &pessoa_juridica){
-		this->codigo = codigo;
-		this->tipo = this->tipo_pessoa::FISICA;
-		this->pessoa = &pessoa_juridica;
+	Cliente(int codigo, string nome, string endereco, long int cnpj = 0){
+		if(cnpj == 0){
+			this->cadastroClienteFisico(codigo, nome, endereco);
+		}else{
+			this->cadastroClienteJuridico(codigo, nome, endereco, cnpj);
+		}
 	}
 
-	void cadastro_cliente_fisico(int codigo, PessoaFisica &pessoa_fisica){
+	void cadastroClienteJuridico(int codigo, string nome, string endereco, long int cnpj){
 		this->codigo = codigo;
-		this->tipo = this->tipo_pessoa::JURIDICA;
-		this->pessoa = &pessoa_fisica;
+		this->tipo = TipoPessoa::JURIDICA;
+		this->pessoa = new PessoaJuridica(nome, endereco, cnpj);
+	}
+
+	void cadastroClienteFisico(int codigo, string nome, string endereco){
+		this->codigo = codigo;
+		this->tipo = TipoPessoa::FISICA;
+		this->pessoa = new PessoaFisica(nome, endereco);
 	}
 
 	//Retorna os dados do cliente
