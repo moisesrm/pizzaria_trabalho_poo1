@@ -12,6 +12,7 @@ class ClienteTest : public CppUnit::TestFixture
   CPPUNIT_TEST_SUITE_END();
 
   private:
+    Pessoa *pessoa;
     Cliente *cliente;
 
   public:

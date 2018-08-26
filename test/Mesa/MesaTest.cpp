@@ -11,46 +11,35 @@
 #include <cppunit/CompilerOutputter.h>
 
 #include <string>
-#include "ClienteTest.h"
+#include "MesaTest.h"
 
-void ClienteTest::setUp(){
+void MesaTest::setUp(){  }
+
+void MesaTest::tearDown(){
+  delete this->mesa;
 }
 
-void ClienteTest::tearDown(){
-  delete this->cliente;
+
+void MesaTest::testAdicionaMesa(){
+  this->mesa = new Mesa(1, "Mesa estilo americano", "Madeira");
+  CPPUNIT_ASSERT(this->mesa->descricao == "Mesa estilo americano");
+  CPPUNIT_ASSERT(this->mesa->tipo == "Madeira");
+  CPPUNIT_ASSERT_EQUAL(1, this->mesa->numero);
 }
 
-
-void ClienteTest::testClienteFisico(){
-  long int cnpj = 0;
-  double desconto = 0.25;
-
-  this->pessoa = new PessoaFisica("Moises", "Av. Independencia");
+void MesaTest::testReservaMesa(){
+  this->pessoa = new Pessoa("Moises", "Av. Independencia");
   this->cliente = new Cliente(1, this->pessoa);
+  this->mesa->reservar(this->cliente);
 
-  CPPUNIT_ASSERT(this->cliente->pessoa->nome == "Moises");
-  CPPUNIT_ASSERT(this->cliente->pessoa->endereco == "Av. Independencia");
-  CPPUNIT_ASSERT_EQUAL(desconto, this->cliente->pessoa->getDesconto());
-  CPPUNIT_ASSERT_EQUAL(this->cliente->pessoa->tipo, TipoPessoa::FISICA);
-}
-
-void ClienteTest::testClienteJuridico(){
-  long int cnpj = 68223850000192;
-  double desconto = 0.0;
-
-  this->pessoa = new PessoaJuridica("Moises", "Av. Independencia", cnpj);
-  this->cliente = new Cliente(1, this->pessoa);
-
-  CPPUNIT_ASSERT(this->cliente->pessoa->nome == "Moises");
-  CPPUNIT_ASSERT(this->cliente->pessoa->endereco == "Av. Independencia");
-  CPPUNIT_ASSERT_EQUAL(desconto, this->cliente->pessoa->getDesconto());
-  CPPUNIT_ASSERT_EQUAL(cnpj, this->cliente->pessoa->getCnpj());
-  CPPUNIT_ASSERT_EQUAL(this->cliente->pessoa->tipo, TipoPessoa::JURIDICA);
+  CPPUNIT_ASSERT(this->mesa->status == Status::OCUPADA);
+  CPPUNIT_ASSERT(this->mesa->cliente->pessoa->nome == "Moises");
+  CPPUNIT_ASSERT_EQUAL(this->cliente->tipo, TipoPessoa::FISICA);
 }
 
 
 // Registers the fixture into the 'registry'
-CPPUNIT_TEST_SUITE_REGISTRATION( ClienteTest );
+CPPUNIT_TEST_SUITE_REGISTRATION( MesaTest );
 
 //-----------------------------------------------------------------------------
 int main(int argc, char* argv[])

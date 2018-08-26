@@ -5,33 +5,15 @@
 
 using namespace std;
 
-enum class TipoPessoa { FISICA, JURIDICA }; 
-
 class Cliente{
   public:
-	TipoPessoa tipo;
 	int codigo;
 	Pessoa *pessoa;
 
 	Cliente(){}
-	Cliente(int codigo, string nome, string endereco, long int cnpj = 0){
-		if(cnpj == 0){
-			this->cadastroClienteFisico(codigo, nome, endereco);
-		}else{
-			this->cadastroClienteJuridico(codigo, nome, endereco, cnpj);
-		}
-	}
-
-	void cadastroClienteJuridico(int codigo, string nome, string endereco, long int cnpj){
+	Cliente(int codigo, Pessoa *pessoa){
 		this->codigo = codigo;
-		this->tipo = TipoPessoa::JURIDICA;
-		this->pessoa = new PessoaJuridica(nome, endereco, cnpj);
-	}
-
-	void cadastroClienteFisico(int codigo, string nome, string endereco){
-		this->codigo = codigo;
-		this->tipo = TipoPessoa::FISICA;
-		this->pessoa = new PessoaFisica(nome, endereco);
+		this->pessoa = pessoa;
 	}
 
 	//Retorna os dados do cliente

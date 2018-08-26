@@ -1,16 +1,16 @@
 #include <string>
-#include "Produto.h"
+// #include "Produto.h"
 using namespace std;
 
-class Componente: public Produto{
+class Bebida: public Produto{
   public:
-    Componente(string nome, string descricao){ 
+    Bebida(string nome, string descricao){ 
+      this->preco = 5.00;
       this->nome = nome; 
       this->descricao = descricao; 
-      this->preco = 0.05;
     };
 
     float getPreco(){
       return this->preco;
-    };
+    }
 };

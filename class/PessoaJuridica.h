@@ -2,11 +2,19 @@
 using namespace std;
 
 class PessoaJuridica : public Pessoa{
+  private:
+    long int cnpj;
+
   public:
 
     PessoaJuridica(){}
-    PessoaJuridica(string nome, string endereco, long int cnpj):Pessoa(nome, endereco, 0.00, cnpj){}
+    PessoaJuridica(string nome, string endereco, long int cnpj){
+      this->nome = nome;
+      this->endereco = endereco;
+      this->cnpj = cnpj;
+      this->tipo = TipoPessoa::JURIDICA;
+    }
 
-    long int setCnpj(long int cnpj) { this->cnpj = cnpj; }
+    void setCnpj(long int cnpj) { this->cnpj = cnpj; }
     long int getCnpj() { return this->cnpj; }
 };

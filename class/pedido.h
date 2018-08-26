@@ -6,6 +6,17 @@ class pedidos//Classe dos pedidos
 		produto *p,*np;
 		float pedido_fim,ac,desconto,bruto;
   public:
+
+
+    // //Calcula o preço da pizza + bebida + componentes da pizza
+    // float calculaPreco(){
+    //   //TOTAL de COMPONENTES ADICIONADOS * 0.05
+    //   //this->get_preco() = BEBIDA
+	// 		float conta = this->get_preco() + (total_c*0.05) + this->PRECO_BASE;
+    //   return conta;
+    // }
+
+
 		void set_mesa_cli(int n,int c) //Diz o numero e codigo do cliente
 			{
 				num_m=n;
