@@ -62,12 +62,35 @@ class Menu{
             cout << "Cadastro feito com Sucesso !\n";
           break;
           case 2: 
+            int opcao_cliente;
             for(int indice; indice < clientes->size(); indice++){
               cout << indice << ". " << clientes[indice]->pessoa->nome << "\n";
             }
+            cout << "Numero: ";
+            cin >> opcao_cliente;
 
+            cout << "Nome: ";
+            cin >> clientes[opcao_cliente]->pessoa->nome;
+            cout << "Endereco: ";
+            cin >> clientes[opcao_cliente]->pessoa->endereco;
+            if(clientes[opcao_cliente]->pessoa->tipo == TipoPessoa::JURIDICA){
+              cout << "CNPJ: ";
+              cin >> clientes[opcao_cliente]->pessoa->cnpj;
+            }
+
+            cout << "Cadastro alterado com Sucesso !\n";
           break;
-          case 3: break;
+          case 3: 
+            int opcao_cliente;
+            for(int indice; indice < clientes->size(); indice++){
+              cout << indice << ". " << clientes[indice]->pessoa->nome << "\n";
+            }
+            cout << "Numero: ";
+            cin >> opcao_cliente;
+            clientes.erase(opcao_cliente);
+
+            cout << "Cadastro deletado com Sucesso !\n";
+          break;
           case default: "Opção invalida\n"; break;
         }
       }
