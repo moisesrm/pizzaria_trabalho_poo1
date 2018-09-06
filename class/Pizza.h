@@ -1,8 +1,5 @@
 #include <string>
 #include <vector>
-#include "Componente.h"
-#include "Sabor.h"
-
 using namespace std;
 
 class Pizza: public Produto{
@@ -15,10 +12,12 @@ class Pizza: public Produto{
     vector <Componente>* componentes;
 
   public:
-    Pizza(){};
-
-    void montar(string descricao, vector <Sabor> sabores, vector <Componente>* componentes){
+    Pizza(string nome, string descricao){
+      this->nome = nome;
       this->descricao = descricao;
+    };
+
+    void montar(vector <Sabor> sabores, vector <Componente>* componentes){
       this->sabores = sabores;
       this->componentes = componentes;
       this->setPreco();

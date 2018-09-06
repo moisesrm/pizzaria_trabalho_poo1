@@ -1,5 +1,4 @@
 #include <string>
-#include "Produto.h"
 using namespace std;
 
 class Componente: public Produto{

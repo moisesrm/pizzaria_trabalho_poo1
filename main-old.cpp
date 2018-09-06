@@ -1,28 +1,38 @@
 //Libs
 #include <iostream>
 #include <stdlib.h>
-#include <string>
-#include <vector>
 
 //Classes
-#include "class/Menu.h"
+#include "class/pessoa_fisica.h"
+#include "class/pessoa_juridica.h"
+#include "class/pedido.h"
+#include "class/produto.h"
+#include "class/mesa.h"
+#include "class/cliente.h"
 
 using namespace std;
 //Moises Machado, Daniela Limberger, Guilherme Zaleski
 
 int main()
 {
-	int opcoesMenu = 1;
-	vector <Cliente>* clientes;
-	vector <Mesa>* mesas;
-	vector <Produto>* cardapio;
-	while (opcoesMenu != 0)
+	int num_c, num_m, x = 1, a, b, d, e, cont_c = 0, cont_m = 0, cont_p = 0;
+	cliente *c;
+	mesa *m;
+	pedidos *p;
+	cout << "Informe o numero de clientes: ";
+	cin >> num_c;
+	cout << "Informe o numero de mesas: ";
+	cin >> num_m;
+	c = new cliente[num_c];
+	m = new mesa[num_m];
+	p = new pedidos[num_m];
+	while (x != 0)
 	{
 		system("cls");
 		cout << "Bem-vindo ao I Love Abacate!\n";
 		cout << "1.Cliente\n2.Mesa\n3.Pedido\n4.Sair\n";
-		cin >> opcoesMenu;
-		switch (opcoesMenu)
+		cin >> x;
+		switch (x)
 		{
 		case 1:
 			system("cls");
@@ -31,7 +41,17 @@ int main()
 			switch (a)
 			{
 			case 1:
-				menuCliente(clientes);
+				if (cont_c < num_c)
+				{
+					c[cont_c].set_cliente();
+					cont_c++;
+					break;
+				}
+				else
+				{
+					cout << "Lista de clientes cheia";
+					break;
+				}
 			case 2:
 				cout << "Digite o numero do cliente e o tipo (1.Fisico/2.Juridico): ";
 				cin >> b >> d;

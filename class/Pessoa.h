@@ -16,7 +16,7 @@ class Pessoa{
 
         virtual void setDesconto(float desconto){}
         virtual void addDesconto(){}
-        virtual double getDesconto(){}
+        virtual double getDesconto(){ return 0; }
         virtual void setCnpj(long int cnpj){}
         virtual long int getCnpj(){}
 };

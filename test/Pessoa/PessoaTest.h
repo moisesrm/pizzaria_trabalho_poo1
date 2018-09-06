@@ -2,6 +2,8 @@ using namespace std;
 
 #include <cppunit/extensions/HelperMacros.h>
 #include "../../class/Pessoa.h"
+#include "../../class/PessoaJuridica.h"
+#include "../../class/PessoaFisica.h"
 
 class PessoaTest : public CppUnit::TestFixture
 {

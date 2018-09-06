@@ -1,8 +1,4 @@
 #include <string>
-#include "Pessoa.h"
-#include "PessoaFisica.h"
-#include "PessoaJuridica.h"
-
 using namespace std;
 
 class Cliente{
